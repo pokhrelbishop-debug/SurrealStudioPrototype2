@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EngineUI/SurrealStudioMainWindow.h"
+
 namespace SurrealStudio {
 
 	class Application
@@ -11,5 +13,9 @@ namespace SurrealStudio {
 		bool EngineShutdown();
 
 		static Application* CreateApplication();
+
+	private:
+
+		EngineUI::SurrealStudioMainWindow m_Window;
 	};
 }
