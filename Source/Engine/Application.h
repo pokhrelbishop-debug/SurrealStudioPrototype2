@@ -17,5 +17,6 @@ namespace SurrealStudio {
 	private:
 
 		EngineUI::SurrealStudioMainWindow m_Window;
+		
 	};
 }
