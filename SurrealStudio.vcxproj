@@ -133,7 +133,9 @@
   <ItemGroup>
     <ClCompile Include="Source\Engine\Application.cpp" />
     <ClCompile Include="Source\Engine\EngineUI\SurrealStudioMainWindow.cpp" />
-    <ClCompile Include="Source\Engine\Scene.cpp" />
+    <ClCompile Include="Source\Engine\Scene\Scene.cpp" />
+    <ClCompile Include="Source\Engine\Scene\Subscene.cpp" />
+    <ClCompile Include="Source\Engine\Scene\World.cpp" />
     <ClCompile Include="Source\EntryPoint.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +143,9 @@
     <ClInclude Include="Source\Engine\EngineDefines.h" />
     <ClInclude Include="Source\Engine\EngineUI\SurrealStudioMainWindow.h" />
     <ClInclude Include="Source\Engine\Logging.h" />
-    <ClInclude Include="Source\Engine\Scene.h" />
+    <ClInclude Include="Source\Engine\Scene\Scene.h" />
+    <ClInclude Include="Source\Engine\Scene\Subscene.h" />
+    <ClInclude Include="Source\Engine\Scene\World.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
