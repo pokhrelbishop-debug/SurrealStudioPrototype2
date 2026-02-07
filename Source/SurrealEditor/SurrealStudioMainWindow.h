@@ -6,7 +6,7 @@
 
 namespace SurrealStudio {
 
-	namespace EngineUI {
+	namespace SurrealEditor {
 
 		class SurrealStudioMainWindow
 		{

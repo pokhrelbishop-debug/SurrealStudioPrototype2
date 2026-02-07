@@ -24,9 +24,12 @@ namespace SurrealStudio {
 			int index;
 		};
 
-		struct VelocityComponent
+		struct PhysicsComponent
 		{
 			glm::vec3 velocity;
+			glm::vec3 angularVelocity;
+			glm::vec3 scaleVelocity;
+
 			std::string objectName; // to which object does it belong to
 
 		private:
@@ -55,24 +58,33 @@ namespace SurrealStudio {
 			friend struct TransformComponent;
 		};
 
-		class VelocityComponentManager
+		class PhysicsComponentManager
 		{
 		public:
 
-			bool AddVelocityComponent(const ObjectData& objectName, glm::vec3 velocity) noexcept;
-			bool DeleteVelocityComponent(const ObjectData& objectName) noexcept;
-			std::vector<VelocityComponent*> GetAllVelocityComponents() const noexcept
+			bool AddPhysicsComponent(const ObjectData& objectName, glm::vec3 velocity, glm::vec3 angularVelocity, glm::vec3 scaleVelocity) noexcept;
+			bool DeletePhysicsComponent(const ObjectData& objectName) noexcept;
+			std::vector<PhysicsComponent*> GetAllPhysicsComponents() const noexcept
 			{
-				std::vector<VelocityComponent*> result;
-				for (auto& ptr : m_VelocityComponents)
+				std::vector<PhysicsComponent*> result;
+				for (auto& ptr : m_PhysicsComponents)
 					result.push_back(ptr.get());
 				return result;
 			}
 
 		private:
 
-			std::vector<std::unique_ptr<VelocityComponent>> m_VelocityComponents;
-			friend struct VelocityComponent;
+			std::vector<std::unique_ptr<PhysicsComponent>> m_PhysicsComponents;
+			friend struct PhysicsComponent;
+		};
+
+		// Central Component hub, where all the components live, NOT ComponentManager(s)
+		class Component
+		{
+		public:
+
+			TransformComponent transformComponent;
+			PhysicsComponent physicsComponent;
 		};
 
 		// Central Component Manager 'hub'
@@ -81,8 +93,20 @@ namespace SurrealStudio {
 		public:
 
 			TransformComponentManager transformComponentManager;
-			VelocityComponentManager velocityComponentManager;
+			PhysicsComponentManager physicsComponentManager;
 			// other components if needed.	
+
+			std::vector<Component*> GetAllComponents() const noexcept
+			{
+				std::vector<Component*> compPtrs;
+				for (auto& component : m_Components)
+					compPtrs.push_back(component.get());
+				return compPtrs;
+			}
+
+		private:
+
+			std::vector<std::unique_ptr<Component>> m_Components;
 		};
 	}
 }

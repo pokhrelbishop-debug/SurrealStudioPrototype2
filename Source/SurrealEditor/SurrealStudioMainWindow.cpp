@@ -8,7 +8,7 @@
 
 namespace SurrealStudio {
 
-	namespace EngineUI {
+	namespace SurrealEditor {
 
 		bool SurrealStudioMainWindow::InitWindow()
 		{

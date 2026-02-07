@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EngineUI/SurrealStudioMainWindow.h"
+#include <SurrealEditor/SurrealStudioMainWindow.h>
 
 namespace SurrealStudio {
 
@@ -16,7 +16,7 @@ namespace SurrealStudio {
 
 	private:
 
-		EngineUI::SurrealStudioMainWindow m_Window;
+		SurrealEditor::SurrealStudioMainWindow m_Window;
 		
 	};
 }

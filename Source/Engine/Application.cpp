@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "Logging.h"
 
-#include "EngineUI/SurrealStudioMainWindow.h"
+#include <SurrealEditor/SurrealStudioMainWindow.h>
 
 namespace SurrealStudio {
 

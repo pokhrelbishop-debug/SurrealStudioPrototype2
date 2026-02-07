@@ -12,7 +12,7 @@ namespace SurrealStudio {
 			newTransformComponent->position = position;
 			newTransformComponent->rotation = rotation;
 			newTransformComponent->scale = scale;
-			m_TransformComponents.push_back(newTransformComponent);
+			m_TransformComponents.push_back(std::move(newTransformComponent));
 			return true;
 		}
 
@@ -34,25 +34,27 @@ namespace SurrealStudio {
 			return false; // did not find component.
 		}
 
-		bool VelocityComponentManager::AddVelocityComponent(const ObjectData& objectName, glm::vec3 velocity) noexcept
+		bool PhysicsComponentManager::AddPhysicsComponent(const ObjectData& objectName, glm::vec3 velocity, glm::vec3 angularVelocity, glm::vec3 scaleVelocity) noexcept
 		{
-			auto newVelocityComponent = std::make_unique<VelocityComponent>();
-			newVelocityComponent->objectName = objectName.name;
-			newVelocityComponent->velocity = velocity;
-			m_VelocityComponents.push_back(std::move(newVelocityComponent));
+			auto newPhysicsComponent = std::make_unique<PhysicsComponent>();
+			newPhysicsComponent->objectName = objectName.name;
+			newPhysicsComponent->velocity = velocity;
+			newPhysicsComponent->angularVelocity = angularVelocity;
+			newPhysicsComponent->scaleVelocity = scaleVelocity;
+			m_PhysicsComponents.push_back(std::move(newPhysicsComponent));
 			return true;
 		}
 
-		bool VelocityComponentManager::DeleteVelocityComponent(const ObjectData& objectName) noexcept
+		bool PhysicsComponentManager::DeletePhysicsComponent(const ObjectData& objectName) noexcept
 		{
-			if (m_VelocityComponents.empty())
+			if (m_PhysicsComponents.empty())
 				return false;
 
-			for (auto it = m_VelocityComponents.begin(); it != m_VelocityComponents.end(); it++)
+			for (auto it = m_PhysicsComponents.begin(); it != m_PhysicsComponents.end(); it++)
 			{
 				if ((*it)->objectName == objectName.name)
 				{
-					m_VelocityComponents.erase(it);
+					m_PhysicsComponents.erase(it);
 					return true;
 				}
 			}
@@ -60,5 +62,7 @@ namespace SurrealStudio {
 			std::cout << "Failed to delete Velocity Component in Object " << objectName.name << ".\n";
 			return false;
 		}
+
+
 	}
 }
