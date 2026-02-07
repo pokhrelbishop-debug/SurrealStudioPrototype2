@@ -135,6 +135,7 @@
     <ClCompile Include="Source\Engine\ECS\Component.cpp" />
     <ClCompile Include="Source\Engine\ECS\Object.cpp" />
     <ClCompile Include="Source\Engine\ECS\System.cpp" />
+    <ClCompile Include="Source\SurrealEditor\Panels\SceneManagerPanel.cpp" />
     <ClCompile Include="Source\SurrealEditor\SurrealStudioMainWindow.cpp" />
     <ClCompile Include="Source\Engine\Scene\Scene.cpp" />
     <ClCompile Include="Source\Engine\Scene\Subscene.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Source\Engine\ECS\Object.h" />
     <ClInclude Include="Source\Engine\ECS\System.h" />
     <ClInclude Include="Source\Engine\EngineDefines.h" />
+    <ClInclude Include="Source\SurrealEditor\Panels\SceneManagerPanel.h" />
     <ClInclude Include="Source\SurrealEditor\SurrealStudioMainWindow.h" />
     <ClInclude Include="Source\Engine\Logging.h" />
     <ClInclude Include="Source\Engine\Scene\Scene.h" />
