@@ -3,6 +3,8 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <vector>
+#include <memory>
 
 namespace SurrealStudio {
 
@@ -21,6 +23,24 @@ namespace SurrealStudio {
 
         // Get view matrix
         glm::mat4 GetViewMatrix() const noexcept;
+
+        enum class CameraType
+        {
+            None = 0,
+            Normal,
+            Orthographic
+        };
+
+        CameraType cameraType;
+
+        bool SetCameraType(CameraType type) noexcept
+        {
+            cameraType = type;
+            return true;
+        }
+        
+        static constexpr int MAX_CAMERAS_PER_WORLD = 10;
+        std::vector<std::unique_ptr<Camera>> m_Cameras;
 
     private:
         void UpdateCameraVectors() noexcept;

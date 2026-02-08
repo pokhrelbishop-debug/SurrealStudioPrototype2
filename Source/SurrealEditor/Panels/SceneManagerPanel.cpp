@@ -8,7 +8,6 @@ namespace SurrealStudio {
 
 		bool SceneManagerPanel::DrawCameraCreation()
 		{
-			constexpr int s_CE_uI_MAX_CAMERA_OBJECTS_PER_WORLD = 10;
 			int i_selectedCameraIndex = 0;
 			const char* c_CPTR_cameraOptions[] = {
 				"Normal", "Orthographic"
@@ -28,6 +27,38 @@ namespace SurrealStudio {
 				}
 				ImGui::EndCombo();
 			}
+
+			if (camera.m_Cameras.size() > camera.MAX_CAMERAS_PER_WORLD && b_openMaxCameraObjectsReachedPerWorld_SSERROR_DialogBox == true)
+			{
+				ImGui::OpenPopup("Surreal Studio Error - Max Cameras Per World Reached");
+				b_openMaxCameraObjectsReachedPerWorld_SSERROR_DialogBox = false;
+			}
+
+			if (ImGui::BeginPopupModal("Surreal Studio Error - Max Cameras Per World Reached", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
+			{
+				ImGui::TextColored(ImVec4(1, 0, 0, 1),
+					"Max amount of Cameras per World is %d, got %d.", camera.MAX_CAMERAS_PER_WORLD, static_cast<int>(camera.m_Cameras.size())
+				);
+
+				if (ImGui::Button("OK"))
+				{
+					ImGui::CloseCurrentPopup();
+					camera.m_Cameras.resize(camera.MAX_CAMERAS_PER_WORLD);
+					b_openMaxCameraObjectsReachedPerWorld_SSERROR_DialogBox = false;
+				}
+				ImGui::EndPopup();
+			}
+
+			if (i_selectedCameraIndex == 0)
+			{
+				camera.SetCameraType(Camera::CameraType::Normal);
+			}
+			else if (i_selectedCameraIndex == 1)
+			{
+				camera.SetCameraType(Camera::CameraType::Orthographic);
+			}
+
+			DrawCameraProperites(c_CPTR_cameraOptions, i_selectedCameraIndex);
 
 			return true;
 		}

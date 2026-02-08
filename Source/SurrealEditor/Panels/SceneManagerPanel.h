@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Engine/Camera.h>
+
 namespace SurrealStudio {
 
 	namespace SurrealEditor {
@@ -14,6 +16,10 @@ namespace SurrealStudio {
 			bool DrawLightingProperties(const char* lightingOptions[], int index);
 			bool DrawCameraProperites(const char* cameraOptions[], int index);
 			bool DrawSceneManagerPanel();
+
+		private:
+
+			Camera camera;
 		};
 	}
 }
